@@ -55,7 +55,7 @@ public class GetCode implements HttpHandler {
         }
 
         Logger.Log(LoggerLevel.POSITIVE, "Code: " + code);
-        response = code.getBytes(StandardCharsets.UTF_8);
+        response = ("\"" + code + "\"").getBytes(StandardCharsets.UTF_8);
 
         httpExchange.sendResponseHeaders(200, response.length);
         OutputStream outputStream = httpExchange.getResponseBody();
