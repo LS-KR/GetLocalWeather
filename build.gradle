@@ -1,0 +1,48 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    id 'java'
+}
+
+group = 'io.github.elihuso'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'io.github.elihuso.Main'
+    }
+}
+
+dependencies {
+    shadow localGroovy()
+    shadow gradleApi()
+
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'com.google.code.gson:gson:2.7'
+    implementation 'org.ini4j:ini4j:0.5.4'
+    implementation 'args4j:args4j-site:2.37'
+    implementation group: 'args4j', name: 'args4j', version: '2.37'
+    implementation 'args4j:args4j-tools:2.37'
+    implementation 'org.jdom:jdom2:2.0.6'
+    implementation 'org.ow2.asm:asm:6.0'
+    implementation 'org.ow2.asm:asm-commons:6.0'
+    implementation 'commons-io:commons-io:2.4'
+    implementation 'org.apache.ant:ant:1.9.4'
+    implementation 'org.codehaus.plexus:plexus-utils:2.0.6'
+}
+
+jar.finalizedBy(shadowJar)
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.named('shadowJar', ShadowJar) {
+    enableRelocation true
+}
