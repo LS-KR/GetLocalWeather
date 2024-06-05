@@ -56,6 +56,6 @@ public class WeatherData {
                 }
             }
         }
-        return String.format("{\"city\":\"%s\",\"weather\":\"%s\",\"emoji\":\"%s\",\"temperature\":\"%d\"}", city, weather, emoji, temperature);
+        return String.format("{\"city\":\"%s\",\"weather\":\"%s\",\"emoji\":\"%s\",\"temperature\":%d}", city, weather, emoji, temperature);
     }
 }
